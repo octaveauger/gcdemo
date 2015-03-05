@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'static_pages#home'
+
   devise_for :admins, :controllers => { :omniauth_callbacks => "admins/omniauth_callbacks" }
 
   # The priority is based upon order of creation: first created -> highest priority.
