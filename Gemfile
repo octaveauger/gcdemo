@@ -31,6 +31,9 @@ gem 'omniauth-google-oauth2'
 gem 'statesman', '1.0.0.beta2'
 gem 'roadie-rails', '~> 1.0.4'
 gem 'gocardless-enterprise', git: 'git@github.com:gocardless/gocardless-enterprise-ruby'
+gem 'carrierwave',             '0.10.0'
+gem 'mini_magick',             '3.8.0'
+gem 'fog',                     '1.23.0'
 
 group :doc do
   gem 'sdoc', '0.3.20', require: false

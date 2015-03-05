@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150304231405) do
+ActiveRecord::Schema.define(version: 20150305184912) do
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -32,5 +32,23 @@ ActiveRecord::Schema.define(version: 20150304231405) do
 
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+
+  create_table "merchants", force: true do |t|
+    t.integer  "admin_id"
+    t.string   "name"
+    t.string   "mandate_name"
+    t.string   "address1"
+    t.string   "postcode"
+    t.string   "city"
+    t.string   "api_id"
+    t.string   "api_key"
+    t.string   "logo"
+    t.string   "product_image"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "merchants", ["admin_id"], name: "index_merchants_on_admin_id"
+  add_index "merchants", ["name"], name: "index_merchants_on_name"
 
 end

@@ -4,6 +4,8 @@ class Admin < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
+  has_many :merchants
+
   def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
     data = access_token.info
     admin = Admin.where(:email => data["email"]).first

@@ -1,0 +1,17 @@
+<% provide(:title, 'Create a merchant') %>
+<h1>Step 1 - Create a merchant</h1>
+<p>This is the merchant for whom you are generating a demo environment.</p>
+
+<%= simple_form_for @merchant, html: { multipart: true }, :url => merchants_path  do |f| %>
+	<%= f.input :name, required: true, autofocus: true %>
+	<%= f.input :mandate_name, required: true, hint: 'This is the name that will appear on the mandate (e.g GC re Merchant)' %>
+	<%= f.input :address1, required: true, label: 'Address' %>
+	<%= f.input :postcode, required: true %>
+	<%= f.input :city, required: true %>
+	<%= f.input :api_id, required: true, label: 'API id', hint: "This can be the merchant's sandbox account API, or any other test sandbox account you control" %>
+	<%= f.input :api_key, required: true, label: 'API key' %>
+	<%= f.input :logo, as: :file, accept: 'image/jpeg,image/gif,image/png', hint: 'This will appear in the navbar of your demo - a PNG (with transparent background) is ideal' %>
+	<%= f.input :product_image, as: :file, accept: 'image/jpeg,image/gif,image/png', hint: 'If you include one it will appear on the homepage of your demo - a PNG (with transparent background) is ideal' %>
+	<%= f.button :submit, "Create merchant", :class => 'pop col-xs-offset-3' %>
+	<%= link_to "back to merchant list", merchants_path %>
+<% end %>
