@@ -1,0 +1,5 @@
+<tr>
+	<td><%= link_to payment_template.nickname, edit_merchant_payment_template_path(payment_template.merchant.id, payment_template.id) %></td>
+	<td><%= '£' + payment_template.amount_gbp.to_s + ' and €' + payment_template.amount_eur.to_s + ' charged ' + payment_template.charge_date.to_s + ' days after mandate creation' %></td>
+	<td><%= link_to "delete", merchant_payment_template_path(payment_template.merchant.id, payment_template.id), data: { method: :delete, confirm: "Are you sure? There is no way back." }, title: "delete" %></td>
+</tr>

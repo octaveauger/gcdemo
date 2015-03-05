@@ -1,5 +1,6 @@
 <tr>
 	<td><%= link_to merchant.name, edit_merchant_path(merchant) %></td>
 	<td><%= image_tag merchant.logo.url, height: 16 if merchant.logo? %></td>
+	<td><%= link_to 'Payment templates', merchant_payment_templates_path(merchant.id) %></td>
 	<td><%= link_to "delete", merchant_path(merchant.id), data: { method: :delete, confirm: "Are you sure? There is no way back." }, title: "delete" %></td>
 </tr>

@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   devise_for :admins, :controllers => { :omniauth_callbacks => "admins/omniauth_callbacks" }
   
   scope '/control' do
-    resources :merchants, path: 'merchants'
+    resources :merchants, path: 'merchants' do
+      resources :payment_templates, path: 'payments'
+    end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

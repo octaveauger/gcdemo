@@ -8,6 +8,9 @@
           <span class="icon-bar"></span>
       </button>
       <%= link_to 'Home', root_path %>
+      <% if signed_in? %>
+        <%= link_to "Your merchants", merchants_path %>
+      <% end %>
     </div>
 
     <div class="collapse navbar-collapse" id="top-navbar">
