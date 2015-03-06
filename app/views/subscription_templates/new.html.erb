@@ -1,0 +1,14 @@
+<% provide(:title, 'Create a subscription template') %>
+<h1>Step 3 - Create a subscription template</h1>
+<p>You can generate as many subscription templates as you wish. Each of them will trigger an everlasting subscription (aka a payment schedule, with payments being created as they near the next date) in the demo once the mandate is confirmed.</p>
+
+<%= simple_form_for @subscription, :url => merchant_subscription_templates_path  do |f| %>
+	<%= f.input :name, required: true, autofocus: true, input_html: {value: f.object.name || (@subscription.merchant.subscription_templates.count + 1).ordinalize + ' subscription'}, hint: 'This will appear in the GC Dashboard' %>
+	<%= f.input :amount_gbp, required: true, hint: 'The amount in GBP which will be used if the mandate is BACS', label: 'Amount in GBP' %>
+	<%= f.input :amount_eur, required: true, hint: 'The amount in EUR which will be used if the mandate is SEPA', label: 'Amount in EUR' %>
+	<%= f.input :day_of_month, required: true, input_html: {value: f.object.day_of_month || '20'}, hint: 'The day of month (-1 or 1-28) your subscription will be charged; we will only use it for a monthly subscription at this stage' %>
+	<%= f.input :interval_unit, required: true, collection: { 'Weekly' => 'weekly', 'Monthly' => 'monthly', 'Yearly' => 'yearly' }, prompt: "Choose the interval unit" %>
+	<%= f.input :interval, required: true, input_html: {value: f.object.interval || '1'}, hint: 'Leave at 1 if you wish to take payments every 1 week/month/year' %>
+	<%= f.button :submit, "Create subscription template", :class => 'pop col-xs-offset-3' %>
+	<%= link_to "back to subscription template list", merchant_subscription_templates_path %>
+<% end %>

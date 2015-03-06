@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   scope '/control' do
     resources :merchants, path: 'merchants' do
       resources :payment_templates, path: 'payments'
+      resources :subscription_templates, path: 'subscriptions'
     end
   end
 

@@ -1,6 +1,7 @@
 class Merchant < ActiveRecord::Base
   belongs_to :admin
   has_many :payment_templates
+  has_many :subscription_templates
 
   mount_uploader :logo, ImageUploader
   mount_uploader :product_image, ImageUploader

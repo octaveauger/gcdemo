@@ -1,0 +1,5 @@
+<tr>
+	<td><%= link_to subscription_template.name, edit_merchant_subscription_template_path(subscription_template.merchant.id, subscription_template.id) %></td>
+	<td><%= '£' + subscription_template.amount_gbp.to_s + ' and €' + subscription_template.amount_eur.to_s + ' charged ' + subscription_template.interval_unit %></td>
+	<td><%= link_to "delete", merchant_subscription_template_path(subscription_template.merchant.id, subscription_template.id), data: { method: :delete, confirm: "Are you sure? There is no way back." }, title: "delete" %></td>
+</tr>
