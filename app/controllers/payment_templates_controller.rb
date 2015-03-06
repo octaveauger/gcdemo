@@ -14,7 +14,11 @@ class PaymentTemplatesController < ApplicationController
     @payment = current_merchant.payment_templates.new(payment_params)
     if @payment.save
       flash[:notice] = 'New payment template created!'
-      redirect_to merchant_payment_templates_path
+      if params[:commit].downcase.include? 'next'
+        redirect_to new_merchant_subscription_template_path
+      else
+        redirect_to new_merchant_payment_template_path
+      end
     else
       flash[:alert] = 'Your new payment template contains errors'
       render 'new'

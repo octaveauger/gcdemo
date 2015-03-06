@@ -14,7 +14,11 @@ class SubscriptionTemplatesController < ApplicationController
     @subscription = current_merchant.subscription_templates.new(subscription_params)
     if @subscription.save
       flash[:notice] = 'New subscription template created!'
-      redirect_to merchant_subscription_templates_path
+      if params[:commit].downcase.include? 'next'
+        redirect_to merchant_path(current_merchant)
+      else
+        redirect_to new_merchant_subscription_template_path
+      end
     else
       flash[:alert] = 'Your new subscription template contains errors'
       render 'new'

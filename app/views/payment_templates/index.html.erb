@@ -1,6 +1,6 @@
 <% provide(:title, 'List of payment templates') %>
 <h1>Payment templates for <%= Merchant.find(params[:merchant_id]).name %></h1>
-<a href="<%= new_merchant_payment_template_path %>" class="btn btn-primary">Add new payment template</a>
+<a href="<%= new_merchant_payment_template_path %>" class="btn btn-primary pop">Add new payment template</a>
 <% if @payments.any? %>
 	<table class="table">
 		<%= render partial: 'payment_templates/payment_template', collection: @payments %>

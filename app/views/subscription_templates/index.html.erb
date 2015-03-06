@@ -1,6 +1,6 @@
 <% provide(:title, 'List of subscription templates') %>
 <h1>Subscription templates for <%= Merchant.find(params[:merchant_id]).name %></h1>
-<a href="<%= new_merchant_subscription_template_path %>" class="btn btn-primary">Add new subscription template</a>
+<a href="<%= new_merchant_subscription_template_path %>" class="btn btn-primary pop">Add new subscription template</a>
 <% if @subscriptions.any? %>
 	<table class="table">
 		<%= render partial: 'subscription_templates/subscription_template', collection: @subscriptions %>

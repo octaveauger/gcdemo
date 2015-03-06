@@ -1,6 +1,6 @@
 <% provide(:title, 'Create a merchant') %>
 <h1>Step 1 - Create a merchant</h1>
-<p>This is the merchant for whom you are generating a demo environment.</p>
+<p class="lead">This is the merchant for whom you are generating a demo environment.</p>
 
 <%= simple_form_for @merchant, html: { multipart: true }, :url => merchants_path  do |f| %>
 	<%= f.input :name, required: true, autofocus: true %>

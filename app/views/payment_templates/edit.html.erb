@@ -1,6 +1,6 @@
 <% provide(:title, 'Edit a payment template') %>
 <h1>Edit this payment template</h1>
-<p>You can generate as many payment templates as you wish. Each of them will trigger a one-off payment in the demo once the mandate is confirmed.</p>
+<p class="lead">You can generate as many payment templates as you wish. Each of them will trigger a one-off payment in the demo once the mandate is confirmed.</p>
 
 <%= simple_form_for @payment, :url => merchant_payment_template_path  do |f| %>
 	<%= f.input :nickname, required: true, autofocus: true, input_html: {value: f.object.nickname || 'First'}, hint: 'Use this to remember which template is which in your control panel' %>

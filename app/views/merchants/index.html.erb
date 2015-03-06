@@ -1,6 +1,6 @@
 <% provide(:title, 'List of your merchants') %>
 <h1>Your merchants</h1>
-<a href="<%= new_merchant_path %>" class="btn btn-primary">Add new merchant</a>
+<a href="<%= new_merchant_path %>" class="btn btn-primary pop">Add new merchant</a>
 <% if @merchants.any? %>
 	<table class="table">
 		<%= render partial: 'merchants/merchant', collection: @merchants %>
