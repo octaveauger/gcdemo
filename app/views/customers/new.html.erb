@@ -1,0 +1,30 @@
+<% provide(:title, 'Customer details') %>
+<h1>Step 1 - Enter your details</h1>
+
+<%= simple_form_for @customer, :url => customers_path(current_merchant.admin, current_merchant)  do |f| %>
+	<%= f.input :given_name, required: true, label: 'First name', autofocus: true %>
+	<%= f.input :family_name, required: true, label: 'Surname' %>
+	<%= f.input :email, required: true %>
+	<%= f.input :address_line1, required: true, label: 'Address' %>
+	<%= f.input :address_line2, label: '&nbsp;'.html_safe %>
+	<%= f.input :address_line3, label: '&nbsp;'.html_safe %>
+	<%= f.input :postal_code, required: true, label: 'Postcode' %>
+	<%= f.input :city, required: true %>
+	<%= f.input :country_code, required: true, label: 'Country', collection: { 'France' => 'FR', 'Belgium' => 'BE', 'Germany' => 'DE', 'Spain' => 'ES', 'Italy' => 'IT', 'Netherlands' => 'NL', 'United Kingdom' => 'GB' }, prompt: "Choose your country" %>
+
+	<%= f.simple_fields_for :bank_accounts do |ba| %>
+		<div data-role="container" id="international-details">
+			<%= ba.input :iban, label: 'IBAN' %>
+			<p class="col-xs-offset-3"><a href="#" data-role='toggle' data-target="local-details">Use local bank details instead</a></p>
+		</div>
+		<div data-role="container" id="local-details" class="hide">
+			<%= ba.input :account_number %>
+			<%= ba.input :bank_code %>
+			<%= ba.input :branch_code %>
+			<p class="col-xs-offset-3"><a href="#" data-role='toggle' data-target="international-details">Use my IBAN instead</a></p>
+		</div>
+
+	<% end %>
+
+	<%= f.button :submit, "Next step", :class => 'pop col-xs-offset-3' %>
+<% end %>

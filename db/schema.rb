@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150305233218) do
+ActiveRecord::Schema.define(version: 20150307223219) do
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -33,6 +33,47 @@ ActiveRecord::Schema.define(version: 20150305233218) do
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
 
+  create_table "bank_accounts", force: true do |t|
+    t.integer  "customer_id"
+    t.string   "iban"
+    t.string   "account_number"
+    t.string   "bank_code"
+    t.string   "branch_code"
+    t.string   "gc_bank_account_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "bank_accounts", ["customer_id"], name: "index_bank_accounts_on_customer_id"
+
+  create_table "customers", force: true do |t|
+    t.integer  "merchant_id"
+    t.string   "address_line1"
+    t.string   "address_line2"
+    t.string   "address_line3"
+    t.string   "city"
+    t.string   "country_code"
+    t.string   "postal_code"
+    t.string   "email"
+    t.string   "family_name"
+    t.string   "given_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "gc_customer_id"
+  end
+
+  add_index "customers", ["merchant_id"], name: "index_customers_on_merchant_id"
+
+  create_table "mandates", force: true do |t|
+    t.integer  "bank_account_id"
+    t.string   "reference"
+    t.string   "gc_mandate_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "mandates", ["bank_account_id"], name: "index_mandates_on_bank_account_id"
+
   create_table "merchants", force: true do |t|
     t.integer  "admin_id"
     t.string   "name"
@@ -46,6 +87,7 @@ ActiveRecord::Schema.define(version: 20150305233218) do
     t.string   "product_image"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "gc_creditor_id"
   end
 
   add_index "merchants", ["admin_id"], name: "index_merchants_on_admin_id"

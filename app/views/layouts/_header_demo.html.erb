@@ -1,0 +1,13 @@
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="site-navbar">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+      </button>
+      <%= link_to image_tag(current_merchant.logo.url, height: 16, alt: current_merchant.name), flow_start_path(current_merchant.admin, current_merchant) %>
+    </div>
+  </div>
+</nav>

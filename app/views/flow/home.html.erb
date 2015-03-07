@@ -1,0 +1,7 @@
+<% provide(:title, 'Home') %>
+
+<%= image_tag(current_merchant.product_image.url, class: 'center-block') %>
+
+<div class="text-center">
+	<%= link_to 'Get it now', new_customer_path(current_merchant.admin, current_merchant), class: 'btn btn-lg btn-primary pop' %>
+</div>
