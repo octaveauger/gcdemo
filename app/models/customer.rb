@@ -1,6 +1,6 @@
 class Customer < ActiveRecord::Base
   belongs_to :merchant
-  has_many :bank_accounts
+  has_many :bank_accounts, dependent: :destroy
   accepts_nested_attributes_for :bank_accounts
   
   validates :address_line1, presence: true

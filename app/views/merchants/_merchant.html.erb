@@ -3,7 +3,7 @@
 		<ul class="list-unstyled">
 			<li><%= link_to 'edit ' + merchant.name, edit_merchant_path(merchant) %></li>
 			<li>
-				<%= link_to 'see demo', flow_start_path(merchant.admin, merchant), :class => 'btn btn-primary btn-xs', target: '_blank' %>
+				<%= link_to 'see demo', flow_start_path(merchant.admin.slug, merchant.slug), :class => 'btn btn-primary btn-xs', target: '_blank' %>
 			</li>
 		</ul>
 	</td>

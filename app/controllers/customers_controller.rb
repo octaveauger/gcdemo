@@ -12,7 +12,7 @@ class CustomersController < ApplicationController
   	@customer = current_merchant.customers.new(customer_params)
     if @customer.save
       session[:customer_id] = @customer.id
-      redirect_to flow_representation_path(current_merchant.admin, current_merchant)
+      redirect_to flow_representation_path(current_merchant.admin.slug, current_merchant.slug)
     else
       flash[:alert] = 'Your details contain errors'
       render 'new'

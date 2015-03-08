@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     end
   end
 
-  scope '/demo/:admin_id/:merchant_id/' do
+  scope '/demo/:admin_slug/:merchant_slug/' do
     resources :customers, only: [:new, :create]
     get 'start', to: 'flow#home', as: 'flow_start'
     get 'representation', to: 'flow#representation', as: 'flow_representation'

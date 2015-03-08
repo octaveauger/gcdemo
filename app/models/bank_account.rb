@@ -1,6 +1,6 @@
 class BankAccount < ActiveRecord::Base
   belongs_to :customer
-  has_many :mandates
+  has_many :mandates, dependent: :destroy
 
   validate :has_bank_details
 

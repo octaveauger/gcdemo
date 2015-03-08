@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150308163426) do
+ActiveRecord::Schema.define(version: 20150308183907) do
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -28,10 +28,12 @@ ActiveRecord::Schema.define(version: 20150308163426) do
     t.datetime "updated_at"
     t.string   "provider"
     t.string   "uid"
+    t.string   "slug"
   end
 
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  add_index "admins", ["slug"], name: "index_admins_on_slug"
 
   create_table "bank_accounts", force: true do |t|
     t.integer  "customer_id"
@@ -94,10 +96,12 @@ ActiveRecord::Schema.define(version: 20150308163426) do
     t.string   "gc_creditor_id"
     t.string   "encrypted_api_id"
     t.string   "encrypted_api_key"
+    t.string   "slug"
   end
 
   add_index "merchants", ["admin_id"], name: "index_merchants_on_admin_id"
   add_index "merchants", ["name"], name: "index_merchants_on_name"
+  add_index "merchants", ["slug"], name: "index_merchants_on_slug"
 
   create_table "payment_templates", force: true do |t|
     t.integer  "merchant_id"

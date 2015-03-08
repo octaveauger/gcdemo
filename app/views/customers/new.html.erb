@@ -1,7 +1,7 @@
 <% provide(:title, 'Customer details') %>
 <h1>Step 1 - Enter your details</h1>
 
-<%= simple_form_for @customer, :url => customers_path(current_merchant.admin, current_merchant)  do |f| %>
+<%= simple_form_for @customer, :url => customers_path(current_merchant.admin.slug, current_merchant.slug)  do |f| %>
 	<%= f.input :given_name, required: true, label: 'First name', autofocus: true %>
 	<%= f.input :family_name, required: true, label: 'Surname' %>
 	<%= f.input :email, required: true %>

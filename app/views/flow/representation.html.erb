@@ -57,6 +57,6 @@
 <div class="col-xs-offset-3">
 	<p><small>By signing this mandate form, you authorise (A) <strong><%= current_merchant.mandate_name %></strong> to send instructions to your bank to debit your account and (B) your bank to debit your account in accordance with the instructions from <strong><%= current_merchant.mandate_name %></strong>.</small></p>
 	<p><small>As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited.</small></p>
-	<%= link_to 'Confirm', flow_confirmation_path(current_merchant.admin, current_merchant), :class => 'btn btn-primary pop' %>
+	<%= link_to 'Confirm', flow_confirmation_path(current_merchant.admin.slug, current_merchant.slug), :class => 'btn btn-primary pop' %>
 	<p><small>By confirming, you are agreeing to be pre-notified three working days before a charge.</small></p>
 </div>

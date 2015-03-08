@@ -25,12 +25,12 @@ class FlowController < ApplicationController
   	end
   	if !(result === true)
   		flash[:notice] = result
-  		redirect_to new_customer_path(current_merchant.admin, current_merchant)
+  		redirect_to new_customer_path(current_merchant.admin.slug, current_merchant.slug)
   	end
   end
 
   def pdf
-  	@res = current_customer.bank_accounts.first.mandates.first.generate_pdf
+  	#@res = current_customer.bank_accounts.first.mandates.first.generate_pdf
   	#send_file(current_customer.bank_accounts.first.mandates.first.generate_pdf, :filename => "mandate.pdf", :disposition => 'inline', :type => "application/pdf")
   end
 end

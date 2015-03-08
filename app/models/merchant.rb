@@ -1,10 +1,11 @@
 class Merchant < ActiveRecord::Base
   belongs_to :admin
-  has_many :payment_templates
-  has_many :subscription_templates
-  has_many :customers
+  has_many :payment_templates, dependent: :destroy
+  has_many :subscription_templates, dependent: :destroy
+  has_many :customers, dependent: :destroy
 
   before_validation :get_gc_creditor_id
+  before_validation :add_slug
 
   attr_encrypted :api_id, key: 'DJ£UJ£UR£JFIEKDIjdu3kd93ud@3u'
   attr_encrypted :api_key, key: 'FD93k@$*PD39uf0930i0I02I-3[DJ'
@@ -15,6 +16,7 @@ class Merchant < ActiveRecord::Base
   mount_uploader :product_image, ImageUploader
   validate :image_size
   validates :name, presence: true
+  validate :unique_name
   validates :mandate_name, presence: true
   validates :address1, presence: true
   validates :postcode, presence: true
@@ -23,6 +25,10 @@ class Merchant < ActiveRecord::Base
   validates :api_key, presence: true
   validates :logo, presence: true
   validates :gc_creditor_id, presence: true
+
+  def add_slug
+    self.slug = self.name.parameterize
+  end
 
   def full_address
     self.address1 + ', ' + self.postcode + ' ' + self.city
@@ -43,6 +49,11 @@ class Merchant < ActiveRecord::Base
   			errors.add(:product_image, "should be less than 5MB")
   		end
   	end
+
+    def unique_name
+      merchants = Merchant.find_by(admin_id: self.admin_id, slug: self.slug)
+      errors.add(:name, "must be unique amongst all merchants in your account") unless merchants.nil?
+    end
 
     # Enables the possibility to use different clients rather than the singleton from the GoCardless Ruby client
     def generate_client

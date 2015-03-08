@@ -4,7 +4,9 @@ class Admin < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
-  has_many :merchants
+  has_many :merchants, dependent: :destroy
+
+  before_save :add_slug
 
   def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
     data = access_token.info
@@ -18,4 +20,10 @@ class Admin < ActiveRecord::Base
     end
     admin
   end
+
+  private
+
+    def add_slug
+      self.slug = self.email.split('@').first
+    end
 end
