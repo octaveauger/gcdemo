@@ -1,4 +1,4 @@
 <% provide(:title, 'Direct Debit setup successful') %>
 <h1>Direct Debit setup successful</h1>
 <p class="lead">We will email you a confirmation of your Direct Debit setup shortly.</p>
-<p class="lead">Your SEPA Direct Debit Mandate reference is <%= current_customer.bank_accounts.first.mandates.first.reference %>. You may find a PDF copy here.</p>
+<p class="lead">Your SEPA Direct Debit Mandate reference is <%= current_customer.bank_accounts.first.mandates.first.reference %>. You may find a <%= link_to 'PDF copy here', flow_mandate_pdf_path(current_merchant.admin, current_merchant) %>.</p>

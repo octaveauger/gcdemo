@@ -20,4 +20,22 @@ class Mandate < ActiveRecord::Base
 		atum_error.error[:message]
 	end
   end
+
+  def generate_pdf
+	response = Typhoeus.post(
+		'https://api-sandbox.gocardless.com/helpers/mandate',
+		headers: {
+			'Authorization' => 'Basic ' + Base64.strict_encode64(self.bank_account.customer.merchant.api_id + ':' + self.bank_account.customer.merchant.api_key),
+			'GoCardless-Version' => '2014-11-03',
+			'Content-Type' => 'application/json',
+			'Accept' => 'application/pdf',
+			'Accept-Language' => 'en'
+		},
+		body: {
+			country_code: 'gb',
+			scheme: 'bacs'
+		}
+	)
+	response
+  end
 end

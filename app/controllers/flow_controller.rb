@@ -19,4 +19,9 @@ class FlowController < ApplicationController
   	end
   	flash[:notice] = result unless result === true
   end
+
+  def pdf
+  	@res = current_customer.bank_accounts.first.mandates.first.generate_pdf
+  	#send_file(current_customer.bank_accounts.first.mandates.first.generate_pdf, :filename => "mandate.pdf", :disposition => 'inline', :type => "application/pdf")
+  end
 end

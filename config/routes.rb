@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     get 'start', to: 'flow#home', as: 'flow_start'
     get 'representation', to: 'flow#representation', as: 'flow_representation'
     get 'confirmation', to: 'flow#confirmation', as: 'flow_confirmation'
+    get 'mandate-pdf', to: 'flow#pdf', as: 'flow_mandate_pdf'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
