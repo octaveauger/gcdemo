@@ -6,6 +6,9 @@ class Merchant < ActiveRecord::Base
 
   before_validation :get_gc_creditor_id
 
+  attr_encrypted :api_id, key: 'DJ£UJ£UR£JFIEKDIjdu3kd93ud@3u'
+  attr_encrypted :api_key, key: 'FD93k@$*PD39uf0930i0I02I-3[DJ'
+
   default_scope { order('created_at DESC') }
 
   mount_uploader :logo, ImageUploader

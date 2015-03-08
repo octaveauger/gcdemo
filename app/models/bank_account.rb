@@ -4,6 +4,11 @@ class BankAccount < ActiveRecord::Base
 
   validate :has_bank_details
 
+  attr_encrypted :iban, key: 'fh4fjeifj48uf£284jeojfFejfuehk48'
+  attr_encrypted :account_number, key: 'D$RYFHOIHD43hfioHFiu4ubf'
+  attr_encrypted :bank_code, key: '$(JFOPRNJ)(£U*FNP£UNR£HFO'
+  attr_encrypted :branch_code, key: 'DIOJ£U()FUNR£(J)RN£F£I(UR*FN£('
+
   def iban_obfuscated
   	hidden = self.iban.gsub(/\s+/, "")[-4..-1]
 	hidden.rjust(18, '*')

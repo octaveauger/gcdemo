@@ -2,6 +2,7 @@ class Payment < ActiveRecord::Base
   belongs_to :mandate
 
   def self.generate_payments(customer)
+  	@result = true
   	customer.merchant.payment_templates.all.each do |template|
   		@result = customer.bank_accounts.first.mandates.first.payments.new.create_gc_payment(template)
   		break if !(@result === true)
@@ -20,7 +21,7 @@ class Payment < ActiveRecord::Base
 		end
 		options = {}
 		options.merge!({ reference: template.reference }) unless template.reference.blank?
-		options.merge!({ charge_date: (Time.now + template.charge_date.to_i.days).strftime("%Y-%m-%d") }) unless template.charge_date.blank?
+		options.merge!({ charge_date: (Time.now + template.charge_date.to_i.days).strftime("%Y-%m-%d") }) unless template.charge_date.blank? or template.charge_date == 0
 
 		result = self.mandate.bank_account.customer.merchant.client.payment.create(body: {
 			payments: options.merge!({

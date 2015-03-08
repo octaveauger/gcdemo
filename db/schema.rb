@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150308153937) do
+ActiveRecord::Schema.define(version: 20150308163426) do
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -42,6 +42,10 @@ ActiveRecord::Schema.define(version: 20150308153937) do
     t.string   "gc_bank_account_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "encrypted_iban"
+    t.string   "encrypted_account_number"
+    t.string   "encrypted_bank_code"
+    t.string   "encrypted_branch_code"
   end
 
   add_index "bank_accounts", ["customer_id"], name: "index_bank_accounts_on_customer_id"
@@ -88,6 +92,8 @@ ActiveRecord::Schema.define(version: 20150308153937) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "gc_creditor_id"
+    t.string   "encrypted_api_id"
+    t.string   "encrypted_api_key"
   end
 
   add_index "merchants", ["admin_id"], name: "index_merchants_on_admin_id"

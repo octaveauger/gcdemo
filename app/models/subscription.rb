@@ -2,6 +2,7 @@ class Subscription < ActiveRecord::Base
   belongs_to :mandate
 
   def self.generate_subscriptions(customer)
+  	@result = true
   	customer.merchant.subscription_templates.all.each do |template|
   		@result = customer.bank_accounts.first.mandates.first.subscriptions.new.create_gc_subscription(template)
   		break if !(@result === true)

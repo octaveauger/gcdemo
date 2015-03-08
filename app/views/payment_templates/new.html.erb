@@ -6,7 +6,7 @@
 	<%= f.input :nickname, required: true, autofocus: true, input_html: {value: f.object.nickname || (@payment.merchant.payment_templates.count + 1).ordinalize + ' payment'}, hint: 'Use this to remember which template is which in your control panel' %>
 	<%= f.input :amount_gbp, required: true, hint: 'The amount in GBP which will be used if the mandate is BACS', label: 'Amount in GBP' %>
 	<%= f.input :amount_eur, required: true, hint: 'The amount in EUR which will be used if the mandate is SEPA', label: 'Amount in EUR' %>
-	<%= f.input :charge_date, required: true, input_html: {value: f.object.charge_date || '0'}, hint: 'How many days after the mandate is created should the customer be debited? Leave 0 for as soon as possible' %>
+	<%= f.input :charge_date, required: true, input_html: {value: f.object.charge_date || '0'}, hint: 'How many days (if not 0, at least 10) after the mandate is created should the customer be debited? Leave 0 for as soon as possible' %>
 	<%= f.input :reference, hint: 'Optional reference on the bank statement' %>
 	<%= f.button :submit, "Next step", :class => 'pop col-xs-offset-3' %>
 	<%= f.button :submit, "Create another one", :class => 'btn-primary' %>
