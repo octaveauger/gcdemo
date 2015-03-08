@@ -45,14 +45,6 @@ class MerchantsController < ApplicationController
     redirect_to merchants_path
   end
 
-  def show
-    @merchant = current_admin.merchants.find_by(id: params[:id])
-    if @merchant.nil?
-      flash[:alert] = 'Merchant not found'
-      redirect_to merchants_path
-    end      
-  end
-
   private
 
     def merchant_params
