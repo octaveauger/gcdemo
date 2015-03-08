@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150307223219) do
+ActiveRecord::Schema.define(version: 20150308153937) do
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -106,6 +106,15 @@ ActiveRecord::Schema.define(version: 20150307223219) do
 
   add_index "payment_templates", ["merchant_id"], name: "index_payment_templates_on_merchant_id"
 
+  create_table "payments", force: true do |t|
+    t.integer  "mandate_id"
+    t.string   "gc_payment_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "payments", ["mandate_id"], name: "index_payments_on_mandate_id"
+
   create_table "subscription_templates", force: true do |t|
     t.integer  "merchant_id"
     t.string   "name"
@@ -119,5 +128,14 @@ ActiveRecord::Schema.define(version: 20150307223219) do
   end
 
   add_index "subscription_templates", ["merchant_id"], name: "index_subscription_templates_on_merchant_id"
+
+  create_table "subscriptions", force: true do |t|
+    t.integer  "mandate_id"
+    t.string   "gc_subscription_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "subscriptions", ["mandate_id"], name: "index_subscriptions_on_mandate_id"
 
 end

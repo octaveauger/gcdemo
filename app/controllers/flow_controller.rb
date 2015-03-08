@@ -17,7 +17,16 @@ class FlowController < ApplicationController
   	if result === true
   		result = current_customer.bank_accounts.first.mandates.new.create_gc_mandate
   	end
-  	flash[:notice] = result unless result === true
+  	if result === true and current_customer.bank_accounts.first.mandates.first.payments.count == 0
+  		result = Payment.generate_payments(current_customer)
+  	end
+  	if result === true and current_customer.bank_accounts.first.mandates.first.subscriptions.count == 0
+  		result = Subscription.generate_subscriptions(current_customer)
+  	end
+  	if !(result === true)
+  		flash[:notice] = result
+  		redirect_to new_customer_path(current_merchant.admin, current_merchant)
+  	end
   end
 
   def pdf

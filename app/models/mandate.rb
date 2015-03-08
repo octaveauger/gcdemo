@@ -1,5 +1,7 @@
 class Mandate < ActiveRecord::Base
   belongs_to :bank_account
+  has_many :payments
+  has_many :subscriptions
 
   def create_gc_mandate
   	return true unless self.bank_account.mandates.count == 0
