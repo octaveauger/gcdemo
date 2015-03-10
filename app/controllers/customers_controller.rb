@@ -22,6 +22,6 @@ class CustomersController < ApplicationController
   private
 
     def customer_params
-      params.require(:customer).permit(:merchant_id, :given_name, :family_name, :email, :address_line1, :address_line2, :address_line3, :postal_code, :city, :country_code, bank_accounts_attributes: [:id, :iban, :account_number, :bank_code, :branch_code])
+      params.require(:customer).permit(:merchant_id, :given_name, :family_name, :email, :address_line1, :address_line2, :address_line3, :postal_code, :city, :country_code, :holder_name, :single_signatory, bank_accounts_attributes: [:id, :iban, :account_number, :bank_code, :branch_code])
     end
 end

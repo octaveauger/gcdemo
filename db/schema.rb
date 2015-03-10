@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150308183907) do
+ActiveRecord::Schema.define(version: 20150309192639) do
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -66,6 +66,8 @@ ActiveRecord::Schema.define(version: 20150308183907) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "gc_customer_id"
+    t.boolean  "single_signatory"
+    t.string   "holder_name"
   end
 
   add_index "customers", ["merchant_id"], name: "index_customers_on_merchant_id"
@@ -97,6 +99,8 @@ ActiveRecord::Schema.define(version: 20150308183907) do
     t.string   "encrypted_api_id"
     t.string   "encrypted_api_key"
     t.string   "slug"
+    t.string   "phone"
+    t.string   "email"
   end
 
   add_index "merchants", ["admin_id"], name: "index_merchants_on_admin_id"

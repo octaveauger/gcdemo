@@ -51,8 +51,12 @@ class Merchant < ActiveRecord::Base
   	end
 
     def unique_name
-      merchants = Merchant.find_by(admin_id: self.admin_id, slug: self.slug)
-      errors.add(:name, "must be unique amongst all merchants in your account") unless merchants.nil?
+      if self.id.nil? # new merchant being created
+        merchants = Merchant.where('admin_id = ? AND slug = ?', self.admin_id, self.slug)
+      else # existing merchant being updated
+        merchants = Merchant.where('admin_id = ? AND slug = ? AND id != ?', self.admin_id, self.slug, self.id)
+      end
+      errors.add(:name, "must be unique amongst all merchants in your account") unless merchants.count == 0
     end
 
     # Enables the possibility to use different clients rather than the singleton from the GoCardless Ruby client
@@ -66,12 +70,16 @@ class Merchant < ActiveRecord::Base
     end
 
     def get_gc_creditor_id
-      begin
-        result = client.creditor.list
-        self.gc_creditor_id = result.first[:id]
-        true
-      rescue Atum::Core::ApiError => atum_error
-        errors.add(:api_id, 'Issue with API connection: ' + atum_error.error[:message])
+      if self.api_id.blank? or self.api_key.blank?
+        errors.add(:api_id, 'Issue with API connection')
+      else
+        begin
+          result = client.creditor.list
+          self.gc_creditor_id = result.first[:id]
+          true
+        rescue Atum::Core::ApiError => atum_error
+          errors.add(:api_id, 'Issue with API connection: ' + atum_error.error[:message])
+        end
       end
     end
 end

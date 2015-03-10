@@ -24,7 +24,7 @@ class FlowController < ApplicationController
   		result = Subscription.generate_subscriptions(current_customer)
   	end
   	if !(result === true)
-  		flash[:notice] = result
+  		flash[:alert] = result
   		redirect_to new_customer_path(current_merchant.admin.slug, current_merchant.slug)
   	end
   end

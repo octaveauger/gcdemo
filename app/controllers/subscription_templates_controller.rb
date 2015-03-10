@@ -15,7 +15,7 @@ class SubscriptionTemplatesController < ApplicationController
     if @subscription.save
       flash[:notice] = 'New subscription template created!'
       if params[:commit].downcase.include? 'next'
-        redirect_to merchant_path(current_merchant)
+        redirect_to merchants_path
       else
         redirect_to new_merchant_subscription_template_path
       end

@@ -8,6 +8,8 @@
 	<%= f.input :address1, required: true, label: 'Address' %>
 	<%= f.input :postcode, required: true %>
 	<%= f.input :city, required: true %>
+	<%= f.input :phone, hint: 'This is optional and only required for Bacs compliance - feel free to leave the default number', input_html: {value: f.object.phone || '020 7183 8674'} %>
+	<%= f.input :email, hint: 'This is optional and only required for Bacs compliance - feel free to use "support@..."' %>
 	<%= f.input :api_id, required: true, label: 'API id', hint: "This can be the merchant's sandbox account API, or any other test sandbox account you control" %>
 	<%= f.input :api_key, required: true, label: 'API key' %>
 	<%= f.input :logo, as: :file, accept: 'image/jpeg,image/gif,image/png', hint: 'This will appear in the navbar of your demo - a PNG (with transparent background) is ideal' %>

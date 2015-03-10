@@ -29,7 +29,7 @@ class BankAccount < ActiveRecord::Base
   	end
   end
 
-def create_gc_bank_account
+  def create_gc_bank_account
   	return true unless self.gc_bank_account_id.blank?
 	begin
 		if self.iban.blank?
@@ -56,18 +56,48 @@ def create_gc_bank_account
 		self.update_attributes(gc_bank_account_id: result[:id])
 		true
 	rescue Atum::Core::ApiError => atum_error
-		atum_error.error[:message]
+		'GoCardless Bank Account Error: ' + atum_error.error[:message]
 	end
 end
 
-  private
+private
 
-  	# Checks that there are either IBAN or local bank details
-  	def has_bank_details
-  		if self.iban.blank?
-  			if self.account_number.blank? or self.bank_code.blank? or self.branch_code.blank?
-  				errors.add(:iban, "you need to enter your IBAN or local bank details")
-  			end
-  		end
-  	end
+	# Checks that there are either IBAN or local bank details
+	def has_bank_details
+    if self.iban.blank?
+			case self.customer.country_code
+      when 'GB'
+        if self.account_number.blank? or self.branch_code.blank?
+			    errors.add(:account_number, "you need to enter your account number and sort code")
+        end
+      when 'FR'
+        if self.account_number.blank? or self.branch_code.blank? or self.bank_code.blank?
+          errors.add(:account_number, "you need to enter your IBAN or local bank details")
+        end
+      when 'BE'
+         if self.account_number.blank?
+          errors.add(:account_number, "you need to enter your IBAN or local bank details")
+        end
+      when 'DE'
+         if self.account_number.blank? or self.bank_code.blank?
+          errors.add(:account_number, "you need to enter your IBAN or local bank details")
+        end
+      when 'ES'
+         if self.account_number.blank? or self.branch_code.blank? or self.bank_code.blank?
+          errors.add(:account_number, "you need to enter your IBAN or local bank details")
+        end
+      when 'IT'
+         if self.account_number.blank? or self.branch_code.blank? or self.bank_code.blank?
+          errors.add(:account_number, "you need to enter your IBAN or local bank details")
+        end
+      when 'NL'
+        if self.account_number.blank? or self.bank_code.blank?
+          errors.add(:account_number, "you need to enter your IBAN or local bank details")
+        end
+      else
+        errors.add(:country_code, "unknown country")
+      end
+		end
+	end
+
 end

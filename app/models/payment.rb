@@ -36,7 +36,7 @@ class Payment < ActiveRecord::Base
 		self.save!
 		true		
 	rescue Atum::Core::ApiError => atum_error
-		atum_error.error[:message]
+		'GoCardless Payment Error: ' + atum_error.error[:message]
 	end
   end
 end

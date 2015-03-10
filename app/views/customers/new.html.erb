@@ -12,19 +12,22 @@
 	<%= f.input :city, required: true %>
 	<%= f.input :country_code, required: true, label: 'Country', collection: { 'France' => 'FR', 'Belgium' => 'BE', 'Germany' => 'DE', 'Spain' => 'ES', 'Italy' => 'IT', 'Netherlands' => 'NL', 'United Kingdom' => 'GB' }, prompt: "Choose your country" %>
 
+	<%= f.input :holder_name, required: true, label: 'Bank holder name' %>
 	<%= f.simple_fields_for :bank_accounts do |ba| %>
 		<div data-role="container" id="international-details">
 			<%= ba.input :iban, label: 'IBAN' %>
-			<p class="col-xs-offset-3"><a href="#" data-role='toggle' data-target="local-details">Use local bank details instead</a></p>
+			<p class="col-xs-offset-3"><a href="#" data-role='toggle' data-target="local-details" id="show-local-bank-details">Use local bank details instead</a></p>
 		</div>
 		<div data-role="container" id="local-details" class="hide">
 			<%= ba.input :account_number %>
 			<%= ba.input :bank_code %>
 			<%= ba.input :branch_code %>
-			<p class="col-xs-offset-3"><a href="#" data-role='toggle' data-target="international-details">Use my IBAN instead</a></p>
+			<p class="col-xs-offset-3"><a href="#" data-role='toggle' data-target="international-details" id="show-international-bank-details">Use my IBAN instead</a></p>
 		</div>
-
 	<% end %>
+	<%= f.input :single_signatory, input_html: { checked: true }, label: '&nbsp;'.html_safe, inline_label: 'I am the only person required to authorise direct debits on this account' %>
 
 	<%= f.button :submit, "Next step", :class => 'pop col-xs-offset-3' %>
 <% end %>
+
+<%= render 'compliance/bacs_footer' %>

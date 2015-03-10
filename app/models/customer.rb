@@ -1,6 +1,6 @@
 class Customer < ActiveRecord::Base
   belongs_to :merchant
-  has_many :bank_accounts, dependent: :destroy
+  has_many :bank_accounts, dependent: :destroy, before_add: :set_nest
   accepts_nested_attributes_for :bank_accounts
   
   validates :address_line1, presence: true
@@ -10,6 +10,9 @@ class Customer < ActiveRecord::Base
   validates :email, presence: true
   validates :given_name, presence: true
   validates :family_name, presence: true
+  validates :holder_name, presence: true
+  validates :single_signatory, acceptance: { :accept => true }
+
 
   def full_name
   	self.given_name + ' ' + self.family_name
@@ -42,7 +45,14 @@ class Customer < ActiveRecord::Base
 		self.update_attributes(gc_customer_id: result[:id])
 		true
 	rescue Atum::Core::ApiError => atum_error
-		atum_error.error[:message]
+		'GoCardless Customer Error: ' + atum_error.error[:message]
 	end
   end
+
+  private
+  	# Required for bank_account to be able to access the customer attributes when validating in a nested form
+  	def set_nest(bank_account)
+  		bank_account.customer ||= self
+  	end
+
 end
