@@ -24,20 +24,28 @@ class Mandate < ActiveRecord::Base
   end
 
   def generate_pdf
-	response = Typhoeus.post(
-		'https://api-sandbox.gocardless.com/helpers/mandate',
+  	return if File.exists?(tmp_pdf_path)
+
+	tmp_file = File.open(tmp_pdf_path, 'wb')
+	request = Typhoeus::Request.new(
+		'https://api-sandbox.gocardless.com/mandates/' + self.gc_mandate_id,
 		headers: {
 			'Authorization' => 'Basic ' + Base64.strict_encode64(self.bank_account.customer.merchant.api_id + ':' + self.bank_account.customer.merchant.api_key),
 			'GoCardless-Version' => '2014-11-03',
 			'Content-Type' => 'application/json',
 			'Accept' => 'application/pdf',
 			'Accept-Language' => 'en'
-		},
-		body: {
-			country_code: 'gb',
-			scheme: 'bacs'
 		}
 	)
-	response
+	request.on_body { |chunk| tmp_file.write(chunk) }
+	request.on_complete do |response|
+		tmp_file.close
+		raise "Error" unless response.code == 200
+	end
+	request.run
+  end
+
+  def tmp_pdf_path
+  	Rails.root.join("tmp", "#{gc_mandate_id}.pdf")
   end
 end

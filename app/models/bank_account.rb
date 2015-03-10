@@ -47,7 +47,7 @@ class BankAccount < ActiveRecord::Base
 
 		result = self.customer.merchant.client.customer_bank_account.create(body: {
 			customer_bank_accounts: options.merge({
-				account_holder_name: self.customer.full_name,
+				account_holder_name: self.customer.holder_name,
 				links: {
 					customer: self.customer.gc_customer_id
 				}
