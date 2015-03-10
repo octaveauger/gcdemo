@@ -2,6 +2,14 @@
 
 <%= image_tag(current_merchant.product_image.url, class: 'center-block') %>
 
-<div class="text-center">
+<div class="text-center" style="padding-top: 30px">
+	<p class="lead">
+		<% if current_merchant.subscription_templates.count > 0 %>
+			We will charge you a one-off £<%= current_merchant.payment_templates.first.amount_gbp %> / €<%= current_merchant.payment_templates.first.amount_eur %> in <%= (current_merchant.payment_templates.first.charge_date < 10 ? 5 : current_merchant.payment_templates.first.charge_date) %> days.
+		<% end %><br/>
+		<% if current_merchant.subscription_templates.count > 0 %>
+			We will charge you £<%= current_merchant.subscription_templates.first.amount_gbp %> / €<%= current_merchant.subscription_templates.first.amount_eur %> every <%= current_merchant.subscription_templates.first.interval.to_s + ' ' + current_merchant.subscription_templates.first.interval_unit[0..-3] + (current_merchant.subscription_templates.first.interval > 1 ? 's' : '') %>.
+		<% end %>
+	</p>
 	<%= link_to 'Buy now', new_customer_path(current_merchant.admin.slug, current_merchant.slug), class: 'btn btn-lg btn-primary pop' %>
 </div>
