@@ -69,4 +69,4 @@ $(function() {
 			$('#show-local-bank-details').click();
 		}
 	}
-git commit -m "Added Bacs compliance screens and improved handling of local bank details"
+});
