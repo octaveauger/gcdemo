@@ -14,7 +14,7 @@ class CustomersController < ApplicationController
       session[:customer_id] = @customer.id
       redirect_to flow_representation_path(current_merchant.admin.slug, current_merchant.slug)
     else
-      flash[:alert] = 'Your details contain errors'
+      flash[:alert] = I18n.t 'customers.new.form_errors'
       render 'new'
     end
   end

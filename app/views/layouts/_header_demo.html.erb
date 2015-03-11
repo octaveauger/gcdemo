@@ -9,5 +9,12 @@
       </button>
       <%= link_to image_tag(current_merchant.logo.url, height: 16, alt: current_merchant.name), flow_start_path(current_merchant.admin.slug, current_merchant.slug) %>
     </div>
+
+    <div class="collapse navbar-collapse" id="top-navbar">
+      <ul class="nav navbar-nav pull-right">
+        <%= link_to image_tag('blank.png', :class => 'flag flag-gb'), locale: 'en' %>
+        <%= link_to image_tag('blank.png', :class => 'flag flag-fr'), locale: 'fr' %>
+      </ul>
+    </div>
   </div>
 </nav>

@@ -19,7 +19,7 @@ class Mandate < ActiveRecord::Base
 		self.save!
 		true
 	rescue Atum::Core::ApiError => atum_error
-		'GoCardless Mandate Error: ' + atum_error.error[:message]
+		I18n.t('gocardless.mandate_error') + atum_error.error[:message]
 	end
   end
 
@@ -34,7 +34,7 @@ class Mandate < ActiveRecord::Base
 			'GoCardless-Version' => '2014-11-03',
 			'Content-Type' => 'application/json',
 			'Accept' => 'application/pdf',
-			'Accept-Language' => 'en'
+			'Accept-Language' => I18n.locale
 		}
 	)
 	request.on_body { |chunk| tmp_file.write(chunk) }

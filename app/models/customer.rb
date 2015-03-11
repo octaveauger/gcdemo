@@ -45,7 +45,7 @@ class Customer < ActiveRecord::Base
 		self.update_attributes(gc_customer_id: result[:id])
 		true
 	rescue Atum::Core::ApiError => atum_error
-		'GoCardless Customer Error: ' + atum_error.error[:message]
+		I18n.t('gocardless.customer_error') + atum_error.error[:message]
 	end
   end
 

@@ -1,23 +1,85 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  activerecord:
+    errors:
+      messages:
+        blank: 'This field cannot be empty'
+        accepted: 'You must accept this field'
+  flow:
+    home:
+      metatitle: 'Home'
+      cta_white_label: 'Buy now'
+      payment_description: 'We will charge you a one-off £%{amount_gbp} / €%{amount_eur} in %{days} days.'
+      subscription_description: 'We will charge you £%{amount_gbp} / €%{amount_eur} every %{interval} %{interval_unit}.'
+      week: 'week'
+      month: 'month'
+      year: 'year'
+    confirmation:
+      metatitle: 'Direct Debit setup successful'
+      title: 'Direct Debit setup successful'
+      email_notice: 'We will email you a confirmation of your Direct Debit setup shortly.'
+      bank_statement_notice_html: '<strong>%{creditor_name}</strong> will appear on your bank statement.'
+      mandate_notice: 'Your Direct Debit Mandate reference is %{mandate_reference}. You may find a'
+      pdf_link: 'PDF copy here'
+  customers:
+    new:
+      metatitle: 'Customer details'
+      title: 'Your customer details'
+      local_details: 'Use local bank details instead'      
+      international_details: 'Use my IBAN instead'
+      single_signatory_label: 'I am the only person required to authorise direct debits on this account'
+      button_next: 'Next step'
+      france: 'France'
+      belgium: 'Belgium'
+      germany: 'Germany'
+      spain: 'Spain'
+      italy: 'Italy'
+      netherlands: 'Netherlands'
+      united_kingdom: 'United Kingdom'
+      form_errors: 'Your details contain errors'
+      form_error_account_number_sort_code: 'you need to enter your account number and sort code'
+      form_error_iban_local_details: 'you need to enter your IBAN or local bank details'
+      form_error_unknown_country: 'unknown country'
+  compliance:
+    bacs_footer:
+      contact_details: 'Contact details:'
+      protected_by: 'Your payments are protected by the'
+      dd_guarantee_link: 'Direct Debit Guarantee'
+      dd_guarantee_title: 'The Direct Debit Guarantee'
+      dd_guarantee_body_html: <li>The Guarantee is offered by all banks and building societies that accept instructions to pay Direct Debits.</li>
+        	<li>If there are any changes to the amount, date or frequency of your Direct Debit the organisation will notify you (normally 10 working days) in advance of your account being debited or as otherwise agreed. If you request the organisation to collect a payment, confirmation of the amount and date will be given to you at the time of the request.</li>
+        	<li>If an error is made in the payment of your Direct Debit, by the organisation or your bank or building society, you are entitled to a full and immediate refund of the amount paid from your bank or building society.</li>
+        	<li>If you receive a refund you are not entitled to, you must pay it back when the organisation asks you to.</li>
+        	<li>You can cancel a Direct Debit at any time by simply contacting your bank or building society. Written confirmation may be required. Please also notify the organisation.</li>
+    bacs_mandate:
+      metatitle: 'BACS Direct Debit Mandate'
+      title: 'Check that your details are correct'
+      account_number: 'Account number'
+      sort_code: 'Sort code'
+      iban: 'IBAN'
+      holder_name: 'Holder'
+      button_confirm: 'Confirm'
+    sepa_mandate:
+      metatitle: 'SEPA Direct Debit Mandate'
+      title: 'SEPA Direct Debit Mandate'
+      creditor_id: 'Creditor ID'
+      creditor_name: 'Name'
+      creditor_address: 'Address'
+      account_number: 'Account number'
+      bank_code: 'Bank code'
+      branch_code: 'Branch code'
+      iban: 'IBAN'
+      holder_name: 'Holder'
+      customer_address: 'Address'
+      mandate_reference: 'Reference'
+      mandate_reference_placeholder: '[Available after confirmation]'
+      mandate_date: 'Date'
+      disclaimer1_html: 'By signing this mandate form, you authorise (A) <strong>%{creditor_name}</strong> to send instructions to your bank to debit your account and (B) your bank to debit your account in accordance with the instructions from <strong>%{creditor_name}</strong>.'
+      disclaimer2_html: 'As part of your rights, you are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited.'
+      disclaimer3_html: 'By confirming, you are agreeing to be pre-notified three working days before a charge.'
+      button_confirm: 'Confirm'
+  gocardless:
+    customer_error: 'GoCardless Customer Error: '
+    bank_account_error: 'GoCardless Bank Account Error: '
+    mandate_error: 'GoCardless Mandate Error: '
+    payment_error: 'GoCardless Payment Error: '
+    subscription_error: 'GoCardless Subscription Error: '

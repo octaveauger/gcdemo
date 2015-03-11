@@ -38,7 +38,7 @@ class Subscription < ActiveRecord::Base
 		self.save!
 		true		
 	rescue Atum::Core::ApiError => atum_error
-		'GoCardless Subscription Error: ' + atum_error.error[:message]
+		I18n.t('gocardless.subscription_error') + atum_error.error[:message]
 	end
   end
 end

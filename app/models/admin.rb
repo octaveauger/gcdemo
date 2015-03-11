@@ -15,7 +15,7 @@ class Admin < ActiveRecord::Base
       admin = Admin.create(email: data["email"],
         password: Devise.friendly_token[0,20],
         provider: access_token.provider,
-        uid: access_token.uid,
+        uid: access_token.uid
       )
     end
     admin

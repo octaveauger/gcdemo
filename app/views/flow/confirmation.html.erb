@@ -1,8 +1,8 @@
-<% provide(:title, 'Direct Debit setup successful') %>
-<h1>Direct Debit setup successful</h1>
-<p class="lead">We will email you a confirmation of your Direct Debit setup shortly.</p>
-<p class="lead"><strong><%= current_merchant.mandate_name %></strong> will appear on your bank statement.</p>
-<p class="lead">Your Direct Debit Mandate reference is <%= current_customer.bank_accounts.first.mandates.first.reference %>. You may find a <%= link_to 'PDF copy here', flow_mandate_pdf_path(current_merchant.admin.slug, current_merchant.slug) %>.</p>
+<% provide(:title, t('.metatitle')) %>
+<h1><%= t('.title') %></h1>
+<p class="lead"><%= t('.email_notice') %></p>
+<p class="lead"><%= t('.bank_statement_notice_html', creditor_name: current_merchant.mandate_name) %></p>
+<p class="lead"><%= t('.mandate_notice', mandate_reference: current_customer.bank_accounts.first.mandates.first.reference) %> <%= link_to t('.pdf_link'), flow_mandate_pdf_path(current_merchant.admin.slug, current_merchant.slug), target: '_blank' %>.</p>
 
 <% if current_customer.bank_accounts.first.scheme == 'bacs' %>
 	<%= render 'compliance/bacs_footer' %>

@@ -1,33 +1,33 @@
-<% provide(:title, 'Customer details') %>
-<h1>Step 1 - Enter your details</h1>
+<% provide(:title, t('.metatitle')) %>
+<h1><%= t('.title') %></h1>
 
 <%= simple_form_for @customer, :url => customers_path(current_merchant.admin.slug, current_merchant.slug)  do |f| %>
-	<%= f.input :given_name, required: true, label: 'First name', autofocus: true %>
-	<%= f.input :family_name, required: true, label: 'Surname' %>
+	<%= f.input :given_name, required: true, autofocus: true %>
+	<%= f.input :family_name, required: true %>
 	<%= f.input :email, required: true %>
-	<%= f.input :address_line1, required: true, label: 'Address' %>
+	<%= f.input :address_line1, required: true %>
 	<%= f.input :address_line2, label: '&nbsp;'.html_safe %>
 	<%= f.input :address_line3, label: '&nbsp;'.html_safe %>
-	<%= f.input :postal_code, required: true, label: 'Postcode' %>
+	<%= f.input :postal_code, required: true %>
 	<%= f.input :city, required: true %>
-	<%= f.input :country_code, required: true, label: 'Country', collection: { 'France' => 'FR', 'Belgium' => 'BE', 'Germany' => 'DE', 'Spain' => 'ES', 'Italy' => 'IT', 'Netherlands' => 'NL', 'United Kingdom' => 'GB' }, prompt: "Choose your country" %>
+	<%= f.input :country_code, required: true, collection: { t('.france') => 'FR', t('.belgium') => 'BE', t('.germany') => 'DE', t('.spain') => 'ES', t('.italy') => 'IT', t('.netherlands') => 'NL', t('.united_kingdom') => 'GB' }, prompt: :translate %>
 
-	<%= f.input :holder_name, required: true, label: 'Bank holder name' %>
+	<%= f.input :holder_name, required: true %>
 	<%= f.simple_fields_for :bank_accounts do |ba| %>
 		<div data-role="container" id="international-details">
 			<%= ba.input :iban, label: 'IBAN' %>
-			<p class="col-xs-offset-3"><a href="#" data-role='toggle' data-target="local-details" id="show-local-bank-details">Use local bank details instead</a></p>
+			<p class="col-xs-offset-3"><a href="#" data-role='toggle' data-target="local-details" id="show-local-bank-details"><%= t('.local_details') %></a></p>
 		</div>
 		<div data-role="container" id="local-details" class="hide">
 			<%= ba.input :account_number %>
 			<%= ba.input :bank_code %>
 			<%= ba.input :branch_code %>
-			<p class="col-xs-offset-3"><a href="#" data-role='toggle' data-target="international-details" id="show-international-bank-details">Use my IBAN instead</a></p>
+			<p class="col-xs-offset-3"><a href="#" data-role='toggle' data-target="international-details" id="show-international-bank-details"><%= t('.international_details') %></a></p>
 		</div>
 	<% end %>
-	<%= f.input :single_signatory, input_html: { checked: true }, label: '&nbsp;'.html_safe, inline_label: 'I am the only person required to authorise direct debits on this account' %>
+	<%= f.input :single_signatory, input_html: { checked: true }, label: '&nbsp;'.html_safe, inline_label: t('.single_signatory_label') %>
 
-	<%= f.button :submit, "Next step", :class => 'pop col-xs-offset-3' %>
+	<%= f.button :submit, t('.button_next'), :class => 'pop col-xs-offset-3' %>
 <% end %>
 
 <%= render 'compliance/bacs_footer' %>

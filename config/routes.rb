@@ -9,12 +9,14 @@ Rails.application.routes.draw do
     end
   end
 
-  scope '/demo/:admin_slug/:merchant_slug/' do
-    resources :customers, only: [:new, :create]
-    get 'start', to: 'flow#home', as: 'flow_start'
-    get 'representation', to: 'flow#representation', as: 'flow_representation'
-    get 'confirmation', to: 'flow#confirmation', as: 'flow_confirmation'
-    get 'mandate-pdf', to: 'flow#pdf', as: 'flow_mandate_pdf'
+  localized do
+    scope '/demo/:admin_slug/:merchant_slug/' do
+      resources :customers, only: [:new, :create]
+      get 'start', to: 'flow#home', as: 'flow_start'
+      get 'representation', to: 'flow#representation', as: 'flow_representation'
+      get 'confirmation', to: 'flow#confirmation', as: 'flow_confirmation'
+      get 'mandate-pdf', to: 'flow#pdf', as: 'flow_mandate_pdf'
+    end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

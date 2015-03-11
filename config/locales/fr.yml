@@ -1,0 +1,81 @@
+fr:
+  activerecord:
+    errors:
+      messages:
+        blank: 'Ce champ ne doit pas être vide'
+        accepted: 'Vous devez accepter ce champ'
+  flow:
+    home:
+      metatitle: 'Accueil'
+      cta_white_label: "J'achète"
+      payment_description: 'Nous collecterons %{amount_eur}€ / %{amount_gbp}£ dans %{days} jours.'
+      subscription_description: 'Nous collecterons %{amount_eur}€ / %{amount_gbp}£ tous les %{interval} %{interval_unit}.'
+      week: 'semaine'
+      month: 'mois'
+      year: 'année'
+    confirmation:
+      metatitle: 'Prélèvement automatique créé'
+      title: 'Prélèvement automatique créé'
+      email_notice: 'Nous vous enverrons une confirmation de votre prélèvement automatique par email sous peu.'
+      bank_statement_notice_html: '<strong>%{creditor_name}</strong> apparaitra sur votre relevé de compte.'
+      mandate_notice: 'Votre référence de mandat de prélèvement automatique est %{mandate_reference}. Vous pouvez voir une'
+      pdf_link: 'copie PDF ici'
+  customers:
+    new:
+      metatitle: 'Information client'
+      title: 'Vos informations client'
+      local_details: 'Utilisez mon compte local à la place'      
+      international_details: 'Utilisez mon IBAN à la place'
+      single_signatory_label: 'Je suis la seule personne requise pour autoriser des prélèvements automatiques sur ce compte'
+      button_next: 'Prochaine étape'
+      france: 'France'
+      belgium: 'Belgique'
+      germany: 'Allemagne'
+      spain: 'Espagne'
+      italy: 'Italie'
+      netherlands: 'Pays-Bas'
+      united_kingdom: 'Grande Bretagne'
+      form_errors: 'Vos informations contiennent des erreurs'
+      form_error_account_number_sort_code: 'vous devez entrer votre numéro de compte et code branche'
+      form_error_iban_local_details: 'vous devez entrer votre IBAN ou données bancaires locales'
+      form_error_unknown_country: 'pays inconnu'
+  compliance:
+    bacs_footer:
+      contact_details: 'Contact :'
+      protected_by: 'Vos paiements sont protégés par la'
+      dd_guarantee_link: 'Garantie Prélèvement Automatique de Grande Bretagne'
+      dd_guarantee_title: 'La Garantie Prélèvement Automatique'
+      dd_guarantee_body_html: "<li>La Guarantie est offerte par toutes les banques qui acceptent des instructions de payer par prélèvement automatique.</li><li>En cas de tout changement au montant, date ou fréquence de votre prélèvement automatique l'organisation vous préviendra (normalement sous 10 jours ouvrables) avant que votre compte soit débité ou comme agréé autrement. Si vous demandez à l'organisation d'annuler un paiement, la confirmation du montant et de la date vous sera donnée au moment de la requête.</li><li>Si une erreur est accomplie lors du paiement de votre prélèvement automatique, par l'organisation ou votre banque, vous avez le droit à un remboursement en entier et immédiat du montant débité par votre banque.</li><li>Si vous recevez un remboursement auquel vous n'avez pas le droit, vous devez le rembourser quand l'organisation vous le demande.</li><li>Vous pouvez annuler un prélèvement automatique à tout moment simplement en contactant votre banque. Une confirmation écrite peut être demandée. Merci de notifier également l'organisation.</li>"
+    bacs_mandate:
+      metatitle: 'Mandat de prélèvement automatique BACS'
+      title: 'Vérifiez que vos informations sont correctes'
+      account_number: 'Numéro de compte'
+      sort_code: 'Code branche'
+      iban: 'IBAN'
+      holder_name: 'Détenteur'
+      button_confirm: 'Confirmer'
+    sepa_mandate:
+      metatitle: 'Mandat de prélèvement automatique SEPA'
+      title: 'Mandat de prélèvement automatique SEPA'
+      creditor_id: 'Identifiant Créancier'
+      creditor_name: 'Nom'
+      creditor_address: 'Adresse'
+      account_number: 'Numéro de compte'
+      bank_code: 'Code banque'
+      branch_code: 'Code guichet'
+      iban: 'IBAN'
+      holder_name: 'Détenteur'
+      customer_address: 'Adresse'
+      mandate_reference: 'Référence'
+      mandate_reference_placeholder: '[Disponible après confirmation]'
+      mandate_date: 'Date'
+      disclaimer1_html: 'En signant ce formulaire de mandat, vous autorisez (A) <strong>%{creditor_name}</strong> à envoyer des instructions à votre banque pour débiter votre compte, et (B) votre banque à débiter votre compte conformément aux instructions de <strong>%{creditor_name}</strong>.'
+      disclaimer2_html: 'Vous bénéficiez d’un droit à remboursement par votre banque selon les conditions décrites dans la convention que vous avez passée avec elle. Toute demande de remboursement doit être présentée dans les 8 semaines suivant la date de débit de votre compte.'
+      disclaimer3_html: "En confirmant, vous acceptez d'être averti trois jours ouvrables avant un prélèvement."
+      button_confirm: 'Confirmer'
+  gocardless:
+    customer_error: 'Erreur Client GoCardless : '
+    bank_account_error: 'Erreur Compte en Banque GoCardless : '
+    mandate_error: 'Erreur Mandat GoCardless : '
+    payment_error: 'Erreur Paiement GoCardless : '
+    subscription_error: 'Erreur Souscription GoCardless : '

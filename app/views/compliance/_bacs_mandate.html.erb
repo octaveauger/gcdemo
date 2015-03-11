@@ -1,27 +1,27 @@
-<% provide(:title, 'BACS Direct Debit Mandate') %>
-<h1>Check that your details are correct</h1>
+<% provide(:title, t('.metatitle')) %>
+<h1><%= t('.title') %></h1>
 
 <% if current_customer.bank_accounts.first.iban.blank? %>
 	<div class="row">
-		<div class="col-xs-3 text-right"><strong>Account number:</strong></div>
+		<div class="col-xs-3 text-right"><strong><%= t('.account_number') %></strong></div>
 		<div class="col-xs-9"><%= current_customer.bank_accounts.first.account_number_obfuscated %></div>
 	</div>
 	<div class="row">	
-		<div class="col-xs-3 text-right"><strong>Sort code:</strong></div>
+		<div class="col-xs-3 text-right"><strong><%= t('.sort_code') %></strong></div>
 		<div class="col-xs-9"><%= current_customer.bank_accounts.first.branch_code %></div>
 	</div>
 <% else %>
 	<div class="row">	
-		<div class="col-xs-3 text-right"><strong>IBAN:</strong></div>
+		<div class="col-xs-3 text-right"><strong><%= t('.iban') %></strong></div>
 		<div class="col-xs-9"><%= current_customer.bank_accounts.first.iban_obfuscated %></div>
 	</div>
 <% end %>
 <div class="row">
-	<div class="col-xs-3 text-right"><strong>Holder:</strong></div>
+	<div class="col-xs-3 text-right"><strong><%= t('.holder_name') %></strong></div>
 	<div class="col-xs-9"><%= current_customer.full_name %></div>
 </div>
 <hr/>
 
-<%= link_to 'Confirm', flow_confirmation_path(current_merchant.admin.slug, current_merchant.slug), :class => 'btn btn-primary pop col-xs-offset-3' %>
+<%= link_to t('.button_confirm'), flow_confirmation_path(current_merchant.admin.slug, current_merchant.slug), :class => 'btn btn-primary pop col-xs-offset-3' %>
 
 <%= render 'compliance/bacs_footer' %>

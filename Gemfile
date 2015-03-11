@@ -36,6 +36,7 @@ gem 'mini_magick',             '3.8.0'
 gem 'fog',                     '1.23.0'
 gem 'typhoeus', '~> 0.7.1'
 gem 'attr_encrypted', '~> 1.3.3'
+gem 'route_translator'
 
 group :doc do
   gem 'sdoc', '0.3.20', require: false
