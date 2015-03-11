@@ -30,7 +30,6 @@ class FlowController < ApplicationController
   end
 
   def pdf
-  	#@res = current_customer.bank_accounts.first.mandates.first.generate_pdf
     mandate = current_customer.bank_accounts.first.mandates.first
     mandate.generate_pdf
 
